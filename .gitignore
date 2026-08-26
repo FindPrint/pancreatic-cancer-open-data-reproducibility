@@ -1,0 +1,32 @@
+# Données et exports cliniques ou biomédicaux potentiellement sensibles
+data/raw/
+data/private/
+data/controlled/
+*.dcm
+*.svs
+*.bam
+*.cram
+*.vcf
+*.vcf.gz
+*.fastq
+*.fastq.gz
+*.tar.gz
+*.zip
+
+# Résultats lourds : publier uniquement via une release après contrôle de licence
+results/**/*.parquet
+results/**/*.h5
+results/**/*.hdf5
+
+# Secrets, environnements et interfaces locales
+.env
+.env.*
+*.pem
+*.key
+credentials*.json
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Manifestes temporaires
+MANIFEST_SHA256.txt.tmp
