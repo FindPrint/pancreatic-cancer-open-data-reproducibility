@@ -1,18 +1,21 @@
 # PDAC v6 — À la recherche d'un remède pour le cancer du pancréas
 
 **Travail non clinique, bénévole, sans financement, sur données publiques.**
-Ce dépôt contient tout le travail reproductible du projet PDAC v6 (15–16
+Ce dépôt contient tout le travail reproductible du projet PDAC v6 (15–18
 novembre 2026) : livre blanc, scripts, provenances, résultats. Le livre
-blanc complet (PDF) est partagé séparément ; sa source Markdown est ici
+blanc complet (PDF, 471 pages, 18 nov. 2026) est partagé séparément ; sa source Markdown est ici
 (`livre-blanc-pdac-v6.md`).
 
 **Le pipeline lui-même n'est pas ici** : il est dans le dépôt privé
 [FindPrint/Code](https://github.com/FindPrint/Code)
-(`universal_v6.0.0_cohen.py`, v6.0.0-L7aL7b-CohenD, SHA-256
+(`universal_v6.1.0_cohen.py`, v6.1.0-L7aL7b-CohenD, version de travail
+adoptée le 16 nov. 2026 à 18h34, SHA-256
+`2af5e5cea3a99ff227c7f76dff48c678eb07baba92625ca57e3c1c412546a9c9` ;
+la v6.0.0 reste la référence intacte, SHA-256
 `bb8bbdba4eb1f8c55b49748274ae8fbfef8a43f6c1b890964f18ba77960c0773`).
 Le pipeline reste privé et n'est jamais commercialisé.
 
-## En une phrase — état au 16 novembre 2026
+## En une phrase — état au 18 novembre 2026
 
 Parmi les ~12 patients dont la tumeur exprime le plus KRAS, **CA125
 (MUC16) et CEA (CEACAM5) sont élevés** — confirmé en expression dans
@@ -31,6 +34,13 @@ non randomisée ; phase 3 prévue 1er semestre 2027), avec un appui mesuré
 **Seule piste ouverte :** ATR seul (hypothèse d'expression, sans appui
 CRISPR ni médicament).
 
+**Travaux v6.1 (17–18 nov. 2026) :** 140 runs, aucun contrôle ne sépare
+le réel du nul (lot étendu §8.31, rotations §8.32, test A §8.34, Phase 2
+§8.35, enrichissements §8.36) ; trois blocs de co-expression confirmés
+(estomac/mucus, immunitaire, réparation ADN) ; la chaîne KRAS ne
+réapparaît sous aucun autre ordre ni contrôle ; l'effet PRMT5 suit MTAP,
+pas CDKN2A (3e confirmation).
+
 **Ce n'est pas un remède démontré.** Rien ici ne guérit, ne recommande un
 traitement et ne remplace un avis médical. Les négatifs sont tous notés :
 effondrement TCGA non répliqué, CRISPR des 12 gènes négatif, trois
@@ -42,7 +52,7 @@ en échecs cliniques, KRAS + anti-PD-(L)1 et KRAS + PARP non soutenus.
 
 | Dossier / fichier | Contenu |
 |---|---|
-| `livre-blanc-pdac-v6.md` | Texte intégral du livre blanc (§1–§10, §8.1–§8.28, §7, journal) |
+| `livre-blanc-pdac-v6.md` | Texte intégral du livre blanc (§1–§10, §8.1–§8.36, §7, journal) |
 | `README.md` | Ce fichier |
 | `download_data.sh` | Re-télécharge toutes les matrices brutes (~2 Go) avec vérification MD5/SHA-256 |
 | `scripts/` | Les 41 scripts Python + 6 lanceurs `.sh` (construction des flux, criblages, survie, balayage) |
@@ -60,8 +70,8 @@ bash download_data.sh ./data
 # 2. Construire les flux (exemple TCGA v4)
 python3 scripts/build_fluxes_tcga_v4.py
 
-# 3. Lancer le pipeline v6 (mode fast, ~4 min, minimum 50 points)
-python3 /chemin/vers/universal_v6.0.0_cohen.py \
+# 3. Lancer le pipeline v6.1 (mode fast, ~4 min, minimum 40 points)
+python3 /chemin/vers/universal_v6.1.0_cohen.py \
   --input results/pdac_tcga_fluxes_v4.csv --output results_fast_tcga_v4 \
   --mode fast --control_col step --target_col PGC
 
